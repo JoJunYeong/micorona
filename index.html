@@ -52,6 +52,7 @@
 		.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
 		.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('//t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 		.info .link {color: #5085BB;}    
+        .info {font-size: 12px;padding: 5px;}
 		#mapwrap{position:relative;overflow:hidden;}
 		.category, .category *{margin:0;padding:0;color:#000;}   
 		.category {position:absolute;overflow:hidden;top:10px;left:10px;width:100px;height:80px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:27px;text-align:center;background-color:#fff;}
@@ -157,9 +158,8 @@
 
     };
 
-    var map = new kakao.maps.Map(mapContainer, mapOption),
-    customOverlay = new kakao.maps.CustomOverlay({}),
-    infowindow = new kakao.maps.InfoWindow({removable: true});
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    
 
 
 var positions = [
@@ -901,13 +901,13 @@ function zoomOut() {
 			iwRemoveable = true;
 
 		// 인포윈도우를 생성합니다
-		var infowindow = new kakao.maps.InfoWindow({
+		var infowindow2 = new kakao.maps.InfoWindow({
 			content : iwContent,
 			removable : iwRemoveable
 		});
 		
 		// 인포윈도우를 마커위에 표시합니다 
-		infowindow.open(map, marker);
+		infowindow2.open(map, marker);
 		
 		// 지도 중심좌표를 접속위치로 변경합니다
 		map.setCenter(locPosition);  
@@ -974,6 +974,9 @@ function marker_resize(){
 	for (var i = 0; i < positions.length; i ++) {
 
 
+    var customOverlay = new kakao.maps.CustomOverlay({}),
+        infowindow = new kakao.maps.InfoWindow({removable: true});
+
 	var diff = 0;
 	var diffDays = 0;
 	var diffTimes = 0; 
@@ -1012,7 +1015,7 @@ function marker_resize(){
 
 
 
-// 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+    // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
     // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
     kakao.maps.event.addListener(marker, 'mouseover', function(mouseEvent) {
        
@@ -1025,8 +1028,8 @@ function marker_resize(){
 
 
 
- // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
- kakao.maps.event.addListener(marker, 'mousemove', function(mouseEvent) {
+    // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+    kakao.maps.event.addListener(marker, 'mousemove', function(mouseEvent) {
         
         customOverlay.setPosition(mouseEvent.latLng); 
     });
@@ -1046,13 +1049,14 @@ function marker_resize(){
     // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다링 업데이트
     kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {
       
-        var content = positions[i].title+
+        var content = '<div class="area">' + positions[i].title+
 					'<br> 방문 : '
-					+positions[i].date +'<br>' ;
+					+positions[i].date +'<br>'+ '</div>' ;
 
         infowindow.setContent(content); 
         infowindow.setPosition(mouseEvent.latLng); 
         infowindow.setMap(map);
+        
     });
 
 
