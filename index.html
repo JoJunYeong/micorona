@@ -110,7 +110,7 @@
 	<div class="category2">
         <ul>
 			<p><em>격리중</em></p>
-			<p><em>809</em></p>
+			<p><em>531</em></p>
             
         </ul>
 	</div>
@@ -125,7 +125,7 @@
 
 	<div class="category4">
         <ul>
-            <p><em>2020.02.10 09시 기준 질병관리본부출처</em></p>
+            <p><em>2020.02.10 20시 기준 질병관리본부출처</em></p>
             <p><em>.</em></p>
 			
 			<p><em>0~14일 - 선명(위험지역) </em></p>
@@ -916,20 +916,58 @@ function zoomOut() {
 	}  
 
 
+        var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
+            imageSize = new kakao.maps.Size(74, 79), // 마커이미지의 크기입니다
+            imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-    var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
-        imageSize = new kakao.maps.Size(74, 79), // 마커이미지의 크기입니다
-        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
+            imageSize2 = new kakao.maps.Size(44, 49), // 마커이미지의 크기입니다
+            imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
+            imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
+            imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 
-	var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
-        imageSize2 = new kakao.maps.Size(44, 49), // 마커이미지의 크기입니다
-        imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
-	var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
-        imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
-        imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+function marker_resize(){
+    if(map.getLevel()<6)
+    {
 
+        var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
+            imageSize = new kakao.maps.Size(74, 79), // 마커이미지의 크기입니다
+            imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+        var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
+            imageSize2 = new kakao.maps.Size(44, 49), // 마커이미지의 크기입니다
+            imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
+            imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
+            imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    }
+    else if(map.getLevel()>=6)
+    {
+        var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
+            imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
+            imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+        var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
+            imageSize2 = new kakao.maps.Size(14, 19), // 마커이미지의 크기입니다
+            imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
+            imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
+            imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+    }
+
+}
 
 
 
