@@ -55,17 +55,17 @@
         .info {font-size: 12px;padding: 5px;}
 		#mapwrap{position:relative;overflow:hidden;}
 		.category, .category *{margin:0;padding:0;color:rgb(255, 0, 0);}   
-		.category {position:absolute;overflow:hidden;top:10px;left:10px;width:130px;height:40px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:24px;text-align:center;background-color:#fff;}
+		.category {position:absolute;overflow:hidden;top:10px;left:10px;width:110px;height:30px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;text-align:center;background-color:#fff;}
 		.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 		.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;}   
 		#mapwrap{position:relative;overflow:hidden;}
 		.category2, .category2 *{margin:0;padding:0;color:rgb(255, 156, 42);}   
-		.category2 {position:absolute;overflow:hidden;top:60px;left:10px;width:130px;height:40px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:24px;text-align:center;background-color:#fff;}
+		.category2 {position:absolute;overflow:hidden;top:45px;left:10px;width:110px;height:30px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;text-align:center;background-color:#fff;}
 		.category2 .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 		.category2 li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
 		#mapwrap{position:relative;overflow:hidden;}
 		.category3, .category3 *{margin:0;padding:0;color:rgb(55, 0, 255);}   
-		.category3 {position:absolute;overflow:hidden;top:110px;left:10px;width:130px;height:40px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:24px;text-align:center;background-color:#fff;}
+		.category3 {position:absolute;overflow:hidden;top:80px;left:10px;width:110px;height:30px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;text-align:center;background-color:#fff;}
 		.category3 .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 		.category3 li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
 		#mapwrap{position:relative;overflow:hidden;}
@@ -117,10 +117,10 @@
 	<div class="category4">
         <ul>
             <span id="time"></span>
-            
+            <p>  <em>2020.02.12. 08시 기준 질병관리본부 출처</em></p>
             <p><em>.</em></p>
 			
-			<p><span><img src="//www.micorona.site/micorona/image/baninfo.png"></span>  <em>선명 : 위험지역(확진자 방문 0~14일 경과) </em></p>
+			<p>  <em>선명 : 위험지역(확진자 방문 0~14일 경과) </em></p>
             <p><em>흐림 : 경계지역(확진자 방문 15~24일 경과) </em></p>
             <p><em>.</em></p>
             <p><em>개발자 : 조준영  apqk0216@gmail.com</em></p>
@@ -149,13 +149,13 @@
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng( 37.52182391251558 , 126.92418527090074), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
+        level: 8 // 지도의 확대 레벨
 
     };
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
     
-    displayTime();
+  //  displayTime();
 
 var positions = [
     {
@@ -916,7 +916,7 @@ function zoomOut() {
         imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 
-	var imageSrc2 = '//www.micorona.site/micorona/image/ban8.png', // 마커이미지의 주소입니다 
+	var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
         imageSize2 = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
         imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
@@ -935,7 +935,7 @@ function marker_resize(){
         imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 
-        var imageSrc2 = '//www.micorona.site/micorona/image/ban8.png', // 마커이미지의 주소입니다 
+        var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
             imageSize2 = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
             imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
