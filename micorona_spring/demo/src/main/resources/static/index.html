@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>MICorona</title>
+    <meta http-equiv=”Refresh” content=”0; URL=https://www.micorona.site”/>
+    <meta property="og:title" content="코로나지도"/>
+    <meta name="description" content="코로나 지도 : 코로나바이러스의 국내 현황을 알려주는 지도 서비스입니다." />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="코로나 맵 : 코로나바이러스의 국내 현황을 알려주는 지도 서비스입니다." />
+    <meta property="og:url" content="https://www.micorona.site/" />
+    <meta name="Robots" content="INDEX, FOLLOW" />
+    <meta property="og:image" href="https://micorona.site/image/virus.png">
+    <link rel="shortcut icon" href="https://micorona.site/image/virus.png">
+    <link rel="canonical" href="https://micorona.site/">
+	<style>
+        .area {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #888;
+            border-radius: 3px;
+            font-size: 12px;
+            top: -5px;
+            left: 15px;
+            padding:2px;
+        }
+		html, body {width:100%;height:100%;margin:0;padding:0;} 
+		.map_wrap {position:relative;overflow:hidden;width:100%;height:100%;}
+		.radius_border{border:1px solid #919191;border-radius:5px;}     
+		.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+		.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+		.custom_typecontrol .btn {background:#fff;background:linear-gradient(#fff,  #e6e6e6);}       
+		.custom_typecontrol .btn:hover {background:#f5f5f5;background:linear-gradient(#f5f5f5,#e3e3e3);}
+		.custom_typecontrol .btn:active {background:#e6e6e6;background:linear-gradient(#e6e6e6, #fff);}    
+		.custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+		.custom_typecontrol .selected_btn:hover {color:#fff;}   
+		.custom_zoomcontrol {position:absolute;top:50px;right:10px;width:36px;height:80px;overflow:hidden;z-index:1;background-color:#f5f5f5;} 
+		.custom_zoomcontrol span {display:block;width:36px;height:40px;text-align:center;cursor:pointer;}     
+		.custom_zoomcontrol span img {width:15px;height:15px;padding:12px 0;border:none;}             
+		.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf;}     
+		.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+		.wrap * {padding: 0;margin: 0;}
+		.wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+		.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+		.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+		.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('//t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+		.info .close:hover {cursor: pointer;}
+		.info .body {position: relative;overflow: hidden;}
+		.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+		.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+		.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+		.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+		.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('//t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+		.info .link {color: #5085BB;}    
+        .info {font-size: 12px;padding: 5px;}
+		#mapwrap{position:relative;overflow:hidden;}
+		.category, .category *{margin:0;padding:0;color:rgb(255, 0, 0);}   
+		.category {position:absolute;overflow:hidden;top:10px;left:10px;width:110px;height:30px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;text-align:center;background-color:#fff;}
+		.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+		.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;}   
+		#mapwrap{position:relative;overflow:hidden;}
+		.category2, .category2 *{margin:0;padding:0;color:rgb(255, 156, 42);}   
+		.category2 {position:absolute;overflow:hidden;top:45px;left:10px;width:110px;height:30px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;text-align:center;background-color:#fff;}
+		.category2 .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+		.category2 li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
+		#mapwrap{position:relative;overflow:hidden;}
+		.category3, .category3 *{margin:0;padding:0;color:rgb(55, 0, 255);}   
+		.category3 {position:absolute;overflow:hidden;top:80px;left:10px;width:110px;height:30px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;text-align:center;background-color:#fff;}
+		.category3 .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+		.category3 li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
+		#mapwrap{position:relative;overflow:hidden;}
+		.category4, .category4 *{ margin:0;padding:0;color:#000;}   
+		.category4 {position:absolute;overflow:hidden;bottom:0px;right:0px;width:100%;height:160px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:16px;text-align:center;background-color:#fff;}
+		.category4 .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+		.category4 li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
+
+		
+       
+		</style>
+</head>
+<body>
+
+	
+	<div class="map_wrap">
+		<div id="map" style="width:100%;height:100%;"></div> 
+	
+		<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+		<div class="custom_zoomcontrol radius_border"> 
+			<span onclick="zoomIn()"><img src="//t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
+			<span onclick="zoomOut()"><img src="//t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
+		</div>
+	</div>
+
+
+
+
+	<div class="category">
+        <ul>
+			<p><em>확진: 28</em></p>
+        </ul>
+	</div>
+	
+	<div class="category2">
+        <ul>
+			<p><em>격리: 992</em></p>
+            
+        </ul>
+	</div>
+
+	<div class="category3">
+        <ul>
+			<p><em>완치: 4</em></p>
+            
+        </ul>
+	</div>
+
+	<div class="category4">
+        <ul>
+            <span id="time"></span>
+            <p>  <em>2020.02.12. 11시 기준 질병관리본부 출처</em></p>
+            <p><em>.</em></p>
+			
+			<p> <span><img  src="https://www.micorona.site/image/baninfo.png" >  <em>(선명) : 위험지역(확진자 방문 0~14일 경과) </em></span> </p>
+            <p><span><img  src="https://www.micorona.site/image/baninfo2.png" > <em>(흐림) : 경계지역(확진자 방문 15~24일 경과) </em></p>
+            <p><em>.</em></p>
+            <p><em>개발자 : 조준영  apqk0216@gmail.com</em></p>
+			
+            
+        </ul>
+    </div>
+    
+	
+
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64fc44ee2d1f19b99a05f91bcd4c094e"></script>
+	<script>
+
+        
+
+     
+    function displayTime(){
+      
+    var levelEl = document.getElementById('time');
+    levelEl.innerHTML =  Date() + '기준 질병관리본부출처.';
+    }
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng( 37.52182391251558 , 126.92418527090074), // 지도의 중심좌표
+        level: 8 // 지도의 확대 레벨
+
+    };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    
+  //  displayTime();
+
+var positions = [
+    {
+        title: '인천국제공항', 
+        latlng: new kakao.maps.LatLng(37.45800860644007, 126.43980980678633),
+		date : "2020-01-19"
+		
+    },
+	////////////////////////////////////////////////////////// 1끝
+    {
+        title: '김포국제공항', 
+        latlng: new kakao.maps.LatLng(37.559345779526495, 126.79253122513414),
+		date : "2020-01-22"
+		
+    },
+    /////////////////////////////////////////////////////////// 2끝
+    {
+        title: '인천국제공항', 
+        latlng: new kakao.maps.LatLng(37.47463108123826, 126.44246113776464),
+		date : "2020-01-20"
+		
+    },
+    {
+        title: '글로비 성형외과',
+        latlng: new kakao.maps.LatLng(37.52440379945927, 127.0278913254847),
+		date : "2020-01-22"
+		
+    },
+	{
+        title: '강남구 호텔(특정불가)',
+        latlng: new kakao.maps.LatLng(37.50637464872092, 127.04888714355336),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: 'GS 한강잠원 1호점',
+        latlng: new kakao.maps.LatLng(37.52440379945927, 127.0278913254847),
+		date : "2020-01-23"
+		
+    },
+    {
+        title: '한일관 압구정점',
+        latlng: new kakao.maps.LatLng(37.52774758918502, 127.0325083353538),
+		date : "2020-01-23"
+		
+    },
+    {
+		title: '글로비 성형외과',
+        latlng: new kakao.maps.LatLng(37.524424023747535, 127.02809496066901),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '일산카페, 식당(특정불가)',
+        latlng: new kakao.maps.LatLng(37.6626004448677, 126.77024008126659),
+		date : "2020-01-24"
+		
+    },
+    ////////////////////////////////////////////////////////////// 3끝
+    {
+        title: '인천국제공항',
+        latlng: new kakao.maps.LatLng(37.46464989156583, 126.45984092345364),
+		date : "2020-01-20"
+		
+    },
+    {
+        title: '평택 송탄터미널',
+        latlng: new kakao.maps.LatLng(37.079382479944385, 127.05764793520136),
+		date : "2020-01-20"
+		
+    },
+    {
+        title: '평택 365연합의원',
+        latlng: new kakao.maps.LatLng(37.052062159812614, 127.05725346279183),
+		date : "2020-01-21"
+		
+    },
+    {
+        title: '평택 365연합의원',
+        latlng: new kakao.maps.LatLng(37.0520869379918, 127.05725629194349),
+		date : "2020-01-25"
+		
+    }, ////////////////////////////////////////////////////////////// 4끝
+    {
+        title: '인천국제공항',
+        latlng: new kakao.maps.LatLng(37.47212498856414, 126.42202970412214),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '성동구 선녀보살',
+        latlng: new kakao.maps.LatLng(37.56399555793258, 127.02955576940059),
+		date : "2020-01-26"
+		
+    },
+    {
+        title: '성신여대입구 CGV',
+        latlng: new kakao.maps.LatLng(37.56400681967688, 127.02955860350727),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '다이소',
+        latlng: new kakao.maps.LatLng(37.5917757141292, 127.01679459460496),
+		date : "2020-01-26"
+		
+    },
+    {
+        title: '성북구 선호케어',
+        latlng: new kakao.maps.LatLng(37.5903478568219, 127.01520627653281),
+		date : "2020-01-26"
+		
+    },
+	{
+        title: '성동구 이마트24,GS25',
+        latlng: new kakao.maps.LatLng(37.562700567930584, 127.03687828363675),
+		date : "2020-01-26"
+		
+    },
+	{
+        title: '식자재유통센터',
+        latlng: new kakao.maps.LatLng(37.59058673401764, 127.01429202077915),
+		date : "2020-01-26"
+		
+    },
+	{
+        title: '두꺼비왕식자재마트',
+        latlng: new kakao.maps.LatLng(37.56633699425906, 127.06585667009631),
+		date : "2020-01-26"
+		
+    },
+	{
+        title: '돈암동떡볶이',
+        latlng: new kakao.maps.LatLng(37.59207947639986, 127.01892619514705),
+		date : "2020-01-27"
+		
+    },
+	{
+        title: '럭키할인마트',
+        latlng: new kakao.maps.LatLng(37.55781231647993, 127.0301531647281),
+		date : "2020-01-27"
+		
+    },
+	{
+        title: '예쁠레뷰티라인',
+        latlng: new kakao.maps.LatLng(37.59171915930955, 127.01842223814234),
+		date : "2020-01-28"
+		
+    },
+    {
+        title: '중랑구(특정불가)',
+        latlng: new kakao.maps.LatLng(37.59036370744537, 127.08749837449734),
+		date : "2020-01-28"
+		
+    },
+    {
+        title: '와이즈웨딩',
+        latlng: new kakao.maps.LatLng(37.52370413808063, 127.04657372239396),
+		date : "2020-01-28"
+		
+    },
+    {
+        title: '중랑구 보건소',
+        latlng: new kakao.maps.LatLng(37.606811668400596, 127.09290272760988),
+		date : "2020-01-29"
+		
+    },////////////////////////////////////////////////////////////// 5끝
+    {
+        title: '명륜교회',
+        latlng: new kakao.maps.LatLng(37.58633266109911, 126.99960656014406),
+		date : "2020-01-26"
+		
+    },////////////////////////////////////////////////////////////// 6끝
+    {
+        title: '인천국제공항',
+        latlng: new kakao.maps.LatLng(37.45961016756999, 126.43226458800585),
+		date : "2020-01-23"
+		
+    },////////////////////////////////////////////////////////////// 7끝
+    {
+        title: '인천국제공항',
+        latlng: new kakao.maps.LatLng(37.47136802107153, 126.44935851697468),
+		date : "2020-01-23"
+		
+    },
+    {
+        title: '서초 소재 음식점(특정불가)',
+        latlng: new kakao.maps.LatLng(37.490598572154944, 127.01151673415602),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '아센사우나',
+        latlng: new kakao.maps.LatLng(35.986688368880436, 126.70813036621763),
+		date : "2020-01-26"
+		
+    },
+    {
+        title: '군산 식당(특정불가)',
+        latlng: new kakao.maps.LatLng(35.984621628816626, 126.70878389694798),
+		date : "2020-01-26"
+		
+    },
+    {
+        title: '유남진내과',
+        latlng: new kakao.maps.LatLng(35.96813293516198, 126.71604510116961),
+		date : "2020-01-27"
+		
+    },
+	{
+        title: '군산의료원',
+        latlng: new kakao.maps.LatLng(35.95493846348653, 126.71210464891386),
+		date : "2020-01-28"
+		
+    },
+    {
+        title: '군산 우리떡갈비',
+        latlng: new kakao.maps.LatLng(35.97607232033585, 126.7055583383239),
+		date : "2020-01-29"
+		
+    }
+	,
+    {
+        title: '이마트 군산점',
+        latlng: new kakao.maps.LatLng(35.982578474042825, 126.73520688864711),
+		date : "2020-01-29"
+		
+    },////////////////////////////////////////////////////////////8끝
+    {
+        title: '고양시 미용실',
+        latlng: new kakao.maps.LatLng(37.64130408358717, 126.79115065310911),
+		date : "2020-01-30"
+		
+    },////////////////////////////////////////////////////////////10,11끝
+    {
+		title: '중랑구(특정불가)',
+        latlng: new kakao.maps.LatLng(37.59036370744537, 127.08749837449734),
+		date : "2020-01-20"
+		
+    },
+    {
+        title: '남대문 시장',
+        latlng: new kakao.maps.LatLng(37.55911596169331, 126.97748871545379),
+		date : "2020-01-20"
+		
+    },
+    {
+        title: 'CGV 부천역점',
+        latlng: new kakao.maps.LatLng(37.48578068443625, 126.78096445331951),
+		date : "2020-01-20"
+		
+    },
+    {
+        title: '인천 출입국관리사무소',
+        latlng: new kakao.maps.LatLng(37.46173937381201, 126.6314147052176),
+		date : "2020-01-21"
+		
+    },
+    {
+        title: '서울역',
+        latlng: new kakao.maps.LatLng(37.554375174992245, 126.97049612836047),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '강릉역',
+        latlng: new kakao.maps.LatLng(37.763202375140125, 128.89876766373573),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '음식점(특정불가)',
+        latlng: new kakao.maps.LatLng(37.762283764472635, 128.9021029437352),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '음식점',
+        latlng: new kakao.maps.LatLng(37.69054575758063, 129.03215303596434),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '썬크루즈리조트',
+        latlng: new kakao.maps.LatLng(37.68336761521904, 129.04379076055042),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '강릉역',
+        latlng: new kakao.maps.LatLng(37.76582165660142, 128.90169428349597),
+		date : "2020-01-23"
+		
+    },
+    {
+        title: '서울역',
+        latlng: new kakao.maps.LatLng(37.55411850567618, 126.97096023206451),
+		date : "2020-01-23"
+		
+    },
+    {
+        title: '부천속내과의원',
+        latlng: new kakao.maps.LatLng(37.48373024782204, 126.77820317650358),
+		date : "2020-01-23"
+		
+    },
+    {
+        title: '더건강한내과의원',
+        latlng: new kakao.maps.LatLng(37.3591272747768, 126.93096105547335),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '현대약국',
+        latlng: new kakao.maps.LatLng(37.359140785240335, 126.93095257725501),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: 'CGV 부천역점',
+        latlng: new kakao.maps.LatLng(37.485868788801554, 126.7811027045193),
+		date : "2020-01-26"
+		
+    },
+    {
+        title: '중구 음식점(특정불가)',
+        latlng: new kakao.maps.LatLng(37.56356889518621, 126.99432373997635),
+		date : "2020-01-27"
+		
+    },
+    {
+        title: '부천속내과,서전약국',
+        latlng: new kakao.maps.LatLng(37.48375252339991, 126.77807025939032),
+		date : "2020-01-28"
+		
+    },//////////////////////////////////////////////////////////////////////////12끝
+    {
+        title: '무안국제공항',
+        latlng: new kakao.maps.LatLng(34.993676588634486, 126.38531123963315),
+		date : "2020-01-19"
+		
+    },
+    {
+        title: '광주21세기병원',
+        latlng: new kakao.maps.LatLng(35.17586604551481, 126.8180914474041),
+		date : "2020-01-27"
+		
+    },
+    {
+        title: '광주21세기병원',
+        latlng: new kakao.maps.LatLng(35.17586587235684, 126.8179761804401),
+		date : "2020-01-28"
+		
+    },//////////////////////////////////////////////////////////////////////////16끝
+    {
+        title: '제주국제공항',
+        latlng: new kakao.maps.LatLng(33.50684507951688, 126.49245933727519),
+		date : "2020-01-21"
+		
+    },
+    {
+        title: '제주시 호텔',
+        latlng: new kakao.maps.LatLng(33.50668301771752, 126.49251409486324),
+		date : "2020-01-21"
+		
+    },
+    {
+        title: '에코랜드',
+        latlng: new kakao.maps.LatLng(33.446486509261625, 126.6694822693612),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '산굼부리',
+        latlng: new kakao.maps.LatLng(33.43251958655332, 126.69366551438627),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '우도',
+        latlng: new kakao.maps.LatLng(33.5037192453674, 126.95265209294718),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '성산일출봉',
+        latlng: new kakao.maps.LatLng(33.46050810403746, 126.9386487713814),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '신라면세점인근식사',
+        latlng: new kakao.maps.LatLng(33.486224276606805, 126.48773236877865),
+		date : "2020-01-22"
+		
+    },
+    {
+        title: '칠성통',
+        latlng: new kakao.maps.LatLng(33.514157406755395, 126.5255539938135),
+		date : "2020-01-23"
+		
+    },
+    {
+        title: '한라산 1100고지',
+        latlng: new kakao.maps.LatLng(33.358050700548766, 126.46222630644043),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '도두해안도로 인근식사',
+        latlng: new kakao.maps.LatLng(33.505013019004245, 126.46732439202333),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '누웨마루거리',
+        latlng: new kakao.maps.LatLng(33.48602893380889, 126.49064941222076),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '제주국제공항',
+        latlng: new kakao.maps.LatLng(33.50778655647224, 126.49229240456997),
+		date : "2020-01-25"
+		
+    }////////////////////////////////////////////////////////////////// 16까지끝
+    ,
+    {
+        title: '서울역',
+        latlng: new kakao.maps.LatLng(37.55220834830316, 126.97079122054056),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '북창동순두부 서울역점',
+        latlng: new kakao.maps.LatLng(37.55370396904878, 126.97064634417069),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '중앙온누리약국',
+        latlng: new kakao.maps.LatLng(37.55376705575525, 126.97071422191543),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '동대구역',
+        latlng: new kakao.maps.LatLng(35.87918774829731, 128.62824039791212),
+		date : "2020-01-24"
+		
+    },
+    {
+        title: '대구 수성구 미니주유소',
+        latlng: new kakao.maps.LatLng(35.84267927896216, 128.62482366738152),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '동대구역',
+        latlng: new kakao.maps.LatLng(35.87915734501592, 128.6291532696987),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '동대구역 스토리웨이',
+        latlng: new kakao.maps.LatLng(35.87920411623431, 128.629026892054),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '수서역',
+        latlng: new kakao.maps.LatLng(37.487478107077756, 127.10206329154813),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '광나루역',
+        latlng: new kakao.maps.LatLng(37.54518580223672, 127.10385625481588),
+		date : "2020-01-25"
+		
+    },
+    {
+        title: '한양대학교구리병원',
+        latlng: new kakao.maps.LatLng(37.60117635562448, 127.13259005966519),
+		date : "2020-01-26"
+		
+    },
+    {
+        title: '삼성서울가정의원',
+        latlng: new kakao.maps.LatLng(37.60634051631705, 127.13912244519786),
+		date : "2020-01-27"
+		
+    },
+    {
+        title: '구리종로약국',
+        latlng: new kakao.maps.LatLng(37.60634951283818, 127.13913378698857),
+		date : "2020-01-27"
+		
+    },
+    {
+        title: '프리마트 구리점',
+        latlng: new kakao.maps.LatLng(37.58696106494684, 127.13839289032512),
+		date : "2020-01-29"
+		
+    },
+    {
+        title: '이삭토스트 구리장자못점',
+        latlng: new kakao.maps.LatLng(37.587233169164314, 127.1387726857306),
+		date : "2020-01-29"
+		
+    },
+    {
+        title: '구리시 서울아산내과',
+        latlng: new kakao.maps.LatLng(37.5870558944255, 127.13820059000237),
+		date : "2020-02-03"
+		
+    },
+    {
+        title: '구리시 수약국',
+        latlng: new kakao.maps.LatLng(37.586963523046, 127.13821740236841),
+		date :  "2020-02-03"
+    },
+    {
+        title: '본죽 구리토평점',
+        latlng: new kakao.maps.LatLng(37.58730749419411, 127.13877848479063),
+		date :  "2020-02-03"
+		
+    },
+    {
+        title: '이마트24 광나루역점',
+        latlng: new kakao.maps.LatLng(37.54469505157131, 127.10352176070528),
+		date :  "2020-02-03"
+		
+    },
+    {
+        title: '광나루역',
+        latlng: new kakao.maps.LatLng(33.50778655647224, 126.49229240456997),
+		date :  "2020-02-03"
+		
+    },
+    {
+        title: '한양대학교구리병원',
+        latlng: new kakao.maps.LatLng(37.601266933926894, 127.13216272940124),
+		date : "2020-02-04"
+		
+    }/////////////////////////////////////////////////////////////////17끝
+    ,
+    {
+        title: '수내동 회사(특정불가)',
+        latlng: new kakao.maps.LatLng(37.37842372062361, 127.11428426166505),
+		date : "2020-01-31"
+		
+    },
+    {
+        title: '파리바게뜨 헬리오시티',
+        latlng: new kakao.maps.LatLng(37.499169041161544, 127.11161537376006),
+		date : "2020-01-31"
+		
+    },
+    {
+        title: '교촌치킨 가락2호점',
+        latlng: new kakao.maps.LatLng(37.49694895530527, 127.11989836991938),
+		date : "2020-01-31"
+		
+    },
+    {
+        title: '파리바게뜨 헬리오시티',
+        latlng: new kakao.maps.LatLng(37.49914872581141, 127.11166057883449),
+		date : "2020-02-01"
+		
+    },
+    {
+        title: '르메르디앙서울',
+        latlng: new kakao.maps.LatLng(37.504692185673015, 127.02747118783965),
+		date : "2020-02-01"
+		
+    },
+    {
+        title: '현대프리미엄아울렛 송도점',
+        latlng: new kakao.maps.LatLng(37.38143222701024, 126.65769855583092),
+		date : "2020-02-01"
+		
+    },
+    {
+        title: '원가네칼국수',
+        latlng: new kakao.maps.LatLng(37.49524845378016, 127.1175096128403),
+		date : "2020-02-01"
+		
+    },
+    {
+        title: '통영별미',
+        latlng: new kakao.maps.LatLng(37.49524845378016, 127.1175096128403),
+		date : "2020-02-03"
+		
+    },/////////////////////////////////////////////////////////////////19끝
+    {
+        title: '명륜교회 예배당(본당)',
+        latlng: new kakao.maps.LatLng(37.586310136571726, 126.9997084583241),
+		date : "2020-01-29"
+		
+    },
+    {
+        title: 'gs 강서타워',
+        latlng: new kakao.maps.LatLng(37.52078256720164, 126.88911600482646),
+		date : "2020-02-01"
+		
+    },/////////////////////////////////////////////////////////////////20끝
+    {
+        title: '프레지던트호텔',
+        latlng: new kakao.maps.LatLng(37.56556068463313, 126.9793770267872),
+		date : "2020-02-02"
+		
+    },
+    {
+        title: '롯데백화점 본점',
+        latlng: new kakao.maps.LatLng(37.565112829921944, 126.98175126808434),
+		date : "2020-02-02"
+		
+    },
+    {
+        title: '이마트 마포공덕점',
+        latlng: new kakao.maps.LatLng(37.54246526224102, 126.95350513263318),
+		date : "2020-02-02"
+		
+    },
+    {
+        title: '플리츠플리즈,텍스 리펀드,창화루',
+        latlng: new kakao.maps.LatLng(37.564813266145066, 126.98186452868315),
+		date : "2020-02-02"
+		
+    }/////////////////////////////////////////////////////////////////23끝
+    ,
+    {
+        title: '매화할인마트',
+        latlng: new kakao.maps.LatLng(37.41720715248464, 126.81112541119343),
+		date : "2020-02-05"
+		
+    },
+    {
+        title: '신천연합병원 선별진료소',
+        latlng: new kakao.maps.LatLng(37.44454766864345, 126.78933131655275),
+		date : "2020-02-07"
+		
+    },
+    {
+        title: '엘마트 시흥점',
+        latlng: new kakao.maps.LatLng(37.41720715248464, 126.81112541119343),
+		date : "2020-02-07"
+		
+    },
+    {
+        title: '신천연합병원 선별진료소',
+        latlng: new kakao.maps.LatLng(37.444527607385695, 126.78945002896943),
+		date : "2020-02-08"
+		
+    },////////////////////////////////////////////////////////////////25,26끝(모자관계)
+    {
+        title: '인천국제공항',
+        latlng: new kakao.maps.LatLng(37.46247610213844, 126.44092657516451),
+		date : "2020-01-31"
+		
+    },
+    {
+        title: '태양38년전통 그옛날손짜장',
+        latlng: new kakao.maps.LatLng(37.43236249601014, 126.80987554572546),
+		date : "2020-02-03"
+		
+    },
+    {
+        title: '신천연합병원 선별진료소',
+        latlng: new kakao.maps.LatLng(37.444570062908554, 126.78925779990333),
+		date : "2020-02-05"
+		
+    }////////////////////////////////////////////////////////////////27끝
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+function zoomIn() {
+    map.setLevel(map.getLevel() - 1);
+}
+
+// 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+function zoomOut() {
+    map.setLevel(map.getLevel() + 1);
+}
+
+
+
+	// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+	if (navigator.geolocation) {
+		
+		// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		navigator.geolocation.getCurrentPosition(function(position) {
+			
+			var lat = position.coords.latitude, // 위도
+				lon = position.coords.longitude; // 경도
+			
+			var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+				message = '<div style="padding:5px;">현위치</div>'; // 인포윈도우에 표시될 내용입니다
+			
+			// 마커와 인포윈도우를 표시합니다
+			displayMarker(locPosition, message);
+				
+		});
+		
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+		
+		var locPosition = new kakao.maps.LatLng(37.52182391251558 , 126.92418527090074),    
+			message = '위치정보를 사용할수 없어요..'
+			
+		displayMarker(locPosition, message);
+	}
+
+	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+	function displayMarker(locPosition, message) {
+		
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({  
+			map: map, 
+			position: locPosition
+		}); 
+		
+		var iwContent = message, // 인포윈도우에 표시할 내용
+			iwRemoveable = true;
+
+		// 인포윈도우를 생성합니다
+		var infowindow2 = new kakao.maps.InfoWindow({
+			content : iwContent,
+			removable : iwRemoveable
+		});
+		
+		// 인포윈도우를 마커위에 표시합니다 
+		infowindow2.open(map, marker);
+		
+		// 지도 중심좌표를 접속위치로 변경합니다
+		map.setCenter(locPosition);  
+		
+
+	}  
+
+
+    var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
+        imageSize = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+	var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
+        imageSize2 = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
+        imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
+            imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
+            imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+
+function marker_resize(){
+    if(map.getLevel()<6)
+    {
+
+        var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
+        imageSize = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+        var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
+            imageSize2 = new kakao.maps.Size(40, 44), // 마커이미지의 크기입니다
+            imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
+            imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
+            imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    }
+    else if(map.getLevel()>=6)
+    {
+        var imageSrc = '//www.micorona.site/micorona/image/ban.png', // 마커이미지의 주소입니다 
+            imageSize = new kakao.maps.Size(34, 39), // 마커이미지의 크기입니다
+            imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+        var imageSrc2 = '//www.micorona.site/micorona/image/ban4.png', // 마커이미지의 주소입니다 
+            imageSize2 = new kakao.maps.Size(14, 19), // 마커이미지의 크기입니다
+            imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        var imageSrc3 = '//www.micorona.site/micorona/image/clear.png', // 마커이미지의 주소입니다 
+            imageSize3 = new kakao.maps.Size(0, 0), // 마커이미지의 크기입니다
+            imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+
+    }
+
+}
+
+
+
+	for (var i = 0; i < positions.length; i ++) {
+
+
+    var customOverlay = new kakao.maps.CustomOverlay({});
+    
+
+        
+
+	var diff = 0;
+	var diffDays = 0;
+	var diffTimes = 0; 
+
+	var a = new Date(positions[i].date);
+	var b = new Date();
+	var c = b - a;
+
+	diff = b.getTime() - a.getTime();    // 0.001초 단위로 계산됨
+	diffDays  = diff / (24 * 60 * 60 * 1000); 
+
+    
+ 
+    
+    // 마커 이미지를 생성합니다    
+	if(diffDays<14)
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    else if(diffDays>=14&diffDays<20)
+	var markerImage = new kakao.maps.MarkerImage(imageSrc2, imageSize2);
+	else if(diffDays>=20)
+	var markerImage = new kakao.maps.MarkerImage(imageSrc3, imageSize3);
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치no
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+
+
+
+
+
+
+
+
+
+
+    // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+    kakao.maps.event.addListener(marker, 'mouseover', function(mouseEvent) {
+       
+        
+        customOverlay.setContent('<div class="area">' + positions[i].title + '</div>');
+        customOverlay.setPosition(mouseEvent.latLng); 
+        customOverlay.setMap(map);
+    });
+
+
+
+
+    // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+    kakao.maps.event.addListener(marker, 'mousemove', function(mouseEvent) {
+        
+        customOverlay.setPosition(mouseEvent.latLng); 
+    });
+
+
+
+    // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+    // 커스텀 오버레이를 지도에서 제거합니다 
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+        
+        customOverlay.setMap(null);
+    }); 
+
+
+
+
+    // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다링 업데이트
+    kakao.maps.event.addListener(marker, 'click', function(mouseEvent) {
+      
+        var infowindow = new kakao.maps.InfoWindow({
+			content : iwContent,
+			removable : iwRemoveable
+		});
+
+        var content = '<div class="area">' + positions[i].title+
+					'<br> 방문 : '
+					+positions[i].date +'<br>'+ '</div>' ;
+
+        infowindow.setContent(content); 
+        infowindow.setPosition(mouseEvent.latLng); 
+        infowindow.setMap(map);
+        
+    });
+
+
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
