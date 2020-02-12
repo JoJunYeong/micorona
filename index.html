@@ -117,7 +117,7 @@
 	<div class="category4">
         <ul>
             <span id="time"></span>
-            <p>  <em>2020.02.12. 11시 기준 질병관리본부 출처</em></p>
+            
             <p><em>.</em></p>
 			
 			<p> <span><img  src="https://www.micorona.site/image/baninfo.png" >  <em>(선명) : 위험지역(확진자 방문 0~14일 경과) </em></span> </p>
@@ -134,13 +134,22 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64fc44ee2d1f19b99a05f91bcd4c094e"></script>
 	<script>
 
-        
+
 
      
     function displayTime(){
       
+        var now = new Date();
+        var t = now.getFullYear() + '년 '
+                +(now.getMonth()+1) + '월 ' + now.getDate() + '일 ' 
+                +now.getHours() + '시 ' + now.getMinutes()+'분 ' ;
+
+
+
+
+
     var levelEl = document.getElementById('time');
-    levelEl.innerHTML =  Date() + '기준 질병관리본부출처.';
+    levelEl.innerHTML =  t + '기준 질병관리본부출처.';
     }
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -152,7 +161,7 @@
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
     
-  //  displayTime();
+    displayTime();
 
 var positions = [
     {
@@ -1003,7 +1012,7 @@ function marker_resize(){
 
 
 
-
+    
 
 
 
