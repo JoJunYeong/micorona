@@ -47,6 +47,7 @@ html, body {
 }     
 /* 사망인원 */
 .death {
+    color:red;
     position:absolute;
     overflow:hidden;
     top:10px;
@@ -66,6 +67,7 @@ html, body {
 }
 /* 완치인원 */
 .recovery {
+    color:blue;
     position:absolute;
     overflow:hidden;
     top:45px;
@@ -96,6 +98,7 @@ html, body {
     font-size:20px;
     text-align:center;
     background-color:#fff;
+    color:orange;
 }
 .definite ul{
     margin:0 auto;
@@ -104,6 +107,7 @@ html, body {
 
 /* 격리 */  
 .isolation {
+    color:black;
     position:absolute;
     overflow:hidden;
     top:115px;
@@ -123,6 +127,8 @@ html, body {
 }
 li{
     list-style: none;
+    font-family: 'Gamja Flower' ;
+
 }
 
 .area {
@@ -145,7 +151,7 @@ li{
     height:160px;
     z-index:10;
     border:1px solid black;
-    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-family: 'Gamja Flower';
     font-size:16px;
     text-align:center;
     background-color:#fff;
