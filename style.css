@@ -62,6 +62,7 @@ html, body {
 }   
 .death ul{
     margin:0 auto;
+    padding:0;
 }
 /* 완치인원 */
 .recovery {
@@ -79,6 +80,7 @@ html, body {
 }
 .recovery ul{
     margin:0 auto;
+    padding:0;
 }
 /* 확진 */
 .definite {
@@ -97,6 +99,7 @@ html, body {
 }
 .definite ul{
     margin:0 auto;
+    padding:0;
 }
 
 /* 격리 */  
@@ -116,6 +119,7 @@ html, body {
 }
 .isolation ul{
     margin:0 auto;
+    padding:0;
 }
 li{
     list-style: none;
