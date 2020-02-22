@@ -146,13 +146,13 @@ li{
 .win_click{
     font-family: 'Noto Sans KR';
     padding:5px;
-    font-size:0.7em;
+    font-size:0.6em;
     text-align: center;
 }
 .cp{
     font-family: 'Noto Sans KR';
     padding:5px;
-    font-size:0.7em;
+    font-size:0.6em;
     text-align: center;
 }
 #map >div > div > div > div > div {
@@ -177,4 +177,5 @@ li{
     text-align:center;
     background-color:#fff;
 }
+.footer ul { padding:0;}
 
