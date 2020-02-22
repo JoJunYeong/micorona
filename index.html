@@ -10,7 +10,7 @@
     <meta property="og:description" content="코로나 맵 : 코로나바이러스의 국내 현황을 알려주는 지도 서비스입니다." />
     <meta property="og:url" content="https://www.micorona.site/" />
     <meta name="Robots" content="INDEX, FOLLOW" />
-    <meta property="og:image" content="https://micorona.site/image/virus.png" href="https://micorona.site/image/virus.png">
+    <meta property="og:image" content="https://micorona.site/image/virus2.png" >
     <link rel="shortcut icon" href="https://micorona.site/image/virus.png">
     <link rel="canonical" href="https://micorona.site/">
 	<link rel="stylesheet" href="style.css" content="css스타일" type="text/css">
@@ -81,6 +81,23 @@
 	<script>
 
 
+
+    function ReadFromFile(sText){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var s = fso.OpenTextFile("C:\\example.txt", 1, true);
+    row = s.ReadLine(); //also we can use s.ReadAll() to read all the lines;
+    alert(row);
+    s.Close();
+    }
+
+
+
+    function WriteToFile(sText){
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    var s = fso.OpenTextFile("C:\\example.txt", 8, true); //if we use 2 instead of 8, the file will be overwritten;
+    s.WriteLine("new line added");
+    s.Close();
+    }
 
      
     function displayTime(){
