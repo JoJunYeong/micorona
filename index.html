@@ -17,8 +17,15 @@
 	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap" rel="stylesheet">
 </head>
 <body>
+    
+    <input type="file" id="openFile" />
+    <br>
+    <pre id="filecontents"></pre>
+    <script type="text/javascript" src="app.js"></script>
 
-	
+
+
+
 	<div class="map_wrap">
 		<div id="map" style="width:100%;height:100%;"></div> 
 	
@@ -29,12 +36,22 @@
 		</div>
 	
 
+        <script>
+
+            var path = Paths.get("./data.txt");
+            var cd = StandardCharsets.UTF8;
+
+
+
+
+        </script>
+
 
 
 
 	<div class="definite">
         <ul>
-			<li>확진:346</li>
+			<li>확진:433</li>
         </ul>
 	</div>
 	
@@ -46,13 +63,13 @@
 
 	<div class="recovery">
         <ul>
-            <li>완치: 17</li>
+            <li>완치: 18</li>
         </ul>
 	</div>
 
 <div class="isolation">
         <ul>
-            <li>격리: 5481</li>
+            <li>격리: 6037</li>
         </ul>
 	</div>
 </div>
@@ -76,28 +93,15 @@
         </ul>
     </div>
 	
-
+    
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64fc44ee2d1f19b99a05f91bcd4c094e"></script>
 	<script>
 
 
 
-    function ReadFromFile(sText){
-    var fso = new ActiveXObject("Scripting.FileSystemObject");
-    var s = fso.OpenTextFile("C:\\example.txt", 1, true);
-    row = s.ReadLine(); //also we can use s.ReadAll() to read all the lines;
-    alert(row);
-    s.Close();
-    }
+   
 
 
-
-    function WriteToFile(sText){
-    var fso = new ActiveXObject("Scripting.FileSystemObject");
-    var s = fso.OpenTextFile("C:\\example.txt", 8, true); //if we use 2 instead of 8, the file will be overwritten;
-    s.WriteLine("new line added");
-    s.Close();
-    }
 
      
     function displayTime(){
