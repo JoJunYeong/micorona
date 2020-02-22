@@ -10,11 +10,7 @@
     <meta property="og:description" content="코로나 맵 : 코로나바이러스의 국내 현황을 알려주는 지도 서비스입니다." />
     <meta property="og:url" content="https://www.micorona.site/" />
     <meta name="Robots" content="INDEX, FOLLOW" />
-<<<<<<< HEAD
-    <meta property="og:image" content="https://micorona.site/image/virus.png">
-=======
-    <meta property="og:image" content="https://micorona.site/image/virus2.png" >
->>>>>>> f28aaa723e645afb378bb0812d365039bc9a609e
+    <meta property="og:image" content="https://micorona.site/image/virus2.png">
     <link rel="shortcut icon" href="https://micorona.site/image/virus.png">
     <link rel="canonical" href="https://micorona.site/">
 	<link rel="stylesheet" href="style.css" content="css스타일" type="text/css">
@@ -22,12 +18,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
-    
- 
 
-
-
-
+	
 	<div class="map_wrap">
 		<div id="map" style="width:100%;height:100%;"></div> 
 	
@@ -38,36 +30,18 @@
 		</div>
 	
 
-        <script>
-
-            var path = Paths.get("./data.txt");
-            var cd = StandardCharsets.UTF8;
-
-
-
-
-        </script>
-
 
 
 
 	<div class="definite">
         <ul>
-<<<<<<< HEAD
-			<li>확진:204</li>
-=======
 			<li>확진:433</li>
->>>>>>> f28aaa723e645afb378bb0812d365039bc9a609e
         </ul>
 	</div>
 	
 	<div class="death">
         <ul>
-<<<<<<< HEAD
-            <li>사망: 1</li>
-=======
             <li>사망: 2</li>
->>>>>>> f28aaa723e645afb378bb0812d365039bc9a609e
         </ul>
 	</div>
 
@@ -79,11 +53,7 @@
 
 <div class="isolation">
         <ul>
-<<<<<<< HEAD
-            <li>격리: 3180</li>
-=======
             <li>격리: 6037</li>
->>>>>>> f28aaa723e645afb378bb0812d365039bc9a609e
         </ul>
 	</div>
 </div>
@@ -101,19 +71,15 @@
                 <span>(흐림) : 경계지역(확진자 방문 15~24일 경과)</span>
             </li>
             <br>
-            <li>개발자 : 조준영 이소운  apqk0216@gmail.com</li>
+            <li>개발자 : 조준영  apqk0216@gmail.com</li>
 			<!-- 소운이 추가됩니다. 123추가-->
             
         </ul>
     </div>
 	
-    
+
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64fc44ee2d1f19b99a05f91bcd4c094e"></script>
 	<script>
-
-
-
-   
 
 
 
@@ -1203,7 +1169,6 @@ function marker_resize(){
           
     // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
     // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-<<<<<<< HEAD
     /*kakao.maps.event.addListener(marker, 'mouseover', function(mouseEvent) {
         customOverlay.setContent('<div class="area">' + positions[i].title + '</div>');
         customOverlay.setPosition(mouseEvent.latLng); 
@@ -1226,14 +1191,6 @@ function marker_resize(){
         // 마커 위에 인포윈도우를 표시합니다
         infowindow.open(map, this);  
           });
-=======
-    //kakao.maps.event.addListener(marker, 'mouseover', function(mouseEvent) {
-    //    customOverlay.setContent('<div class="area">' + positions[i].title + '</div>');
-    //    customOverlay.setPosition(mouseEvent.latLng); 
-    //    customOverlay.setMap(map);
-    //});
-
->>>>>>> f28aaa723e645afb378bb0812d365039bc9a609e
 
 
 ////////////////
