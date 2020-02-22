@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="https://micorona.site/image/virus.png">
     <link rel="canonical" href="https://micorona.site/">
 	<link rel="stylesheet" href="style.css" content="css스타일" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Gamja+Flower&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -26,50 +27,56 @@
 			<span onclick="zoomIn()"><img src="//t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대"></span>  
 			<span onclick="zoomOut()"><img src="//t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소"></span>
 		</div>
-	</div>
-	<div class="category3">
+	
+
+
+
+
+	<div class="definite">
         <ul>
 			<p><em>확진:346</em></p>
         </ul>
 	</div>
 	
-	<div class="category">
+	<div class="death">
         <ul>
 			<p><em>사망: 2</em></p>
             
         </ul>
 	</div>
 
-	<div class="category2">
+	<div class="recovery">
         <ul>
-			<p><em>완치: 17</em></p>
-            
+            <li>완치: 17</li>
         </ul>
 	</div>
 
-<div class="category5">
+<div class="isolation">
         <ul>
 			<p><em>격리: 5481</em></p>
             
         </ul>
 	</div>
+</div>
 
-
-	<div class="category4">
+	<div class="footer">
         <ul>
             <span id="time"></span>
-            
-            <p><em>.</em></p>
-			
-			<p> <span><img  src="https://www.micorona.site/image/baninfo.png" >  <em>(선명) : 위험지역(확진자 방문 0~14일 경과) </em></span> </p>
-            <p><span><img  src="https://www.micorona.site/image/baninfo2.png" > <em>(흐림) : 경계지역(확진자 방문 15~24일 경과) </em></p>
-            <p><em>.</em></p>
-            <p><em>개발자 : 조준영  apqk0216@gmail.com</em></p>
+            <br>
+			<li>
+               <img  src="https://www.micorona.site/image/baninfo.png" >
+               <span>  (선명) : 위험지역(확진자 방문 0~14일 경과)</span> 
+            </li>
+            <li>
+                <img  src="https://www.micorona.site/image/baninfo2.png" >
+                <span>(흐림) : 경계지역(확진자 방문 15~24일 경과)</span>
+            </li>
+            <br>
+            <li>개발자 : 조준영  apqk0216@gmail.com</li>
 			<!-- 소운이 추가됩니다. 123추가-->
             
         </ul>
     </div>
-    
 	
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64fc44ee2d1f19b99a05f91bcd4c094e"></script>
@@ -1195,9 +1202,9 @@ function marker_resize(){
     kakao.maps.event.addListener(marker, 'mouseover', function(mouseEvent) {
        
         
-        customOverlay.setContent('<div class="area">' + positions[i].title + '</div>');
-        customOverlay.setPosition(mouseEvent.latLng); 
-        customOverlay.setMap(map);
+    //    customOverlay.setContent('<div class="area">' + positions[i].title + '</div>');
+    //    customOverlay.setPosition(mouseEvent.latLng); 
+     //   customOverlay.setMap(map);
     });
 
 
