@@ -60,6 +60,9 @@ html, body {
     text-align:center;
     background-color:#fff;
 }   
+.death ul{
+    margin:0 auto;
+}
 /* 완치인원 */
 .recovery {
     position:absolute;
@@ -73,7 +76,10 @@ html, body {
     font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:20px;
     text-align:center;
     background-color:#fff;
-}	
+}
+.recovery ul{
+    margin:0 auto;
+}
 /* 확진 */
 .definite {
     position:absolute;
@@ -89,6 +95,10 @@ html, body {
     text-align:center;
     background-color:#fff;
 }
+.definite ul{
+    margin:0 auto;
+}
+
 /* 격리 */  
 .isolation {
     position:absolute;
@@ -103,6 +113,12 @@ html, body {
     font-size:20px;
     text-align:center;
     background-color:#fff;
+}
+.isolation ul{
+    margin:0 auto;
+}
+li{
+    list-style: none;
 }
 
 .area {
