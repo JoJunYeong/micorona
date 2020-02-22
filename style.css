@@ -45,8 +45,8 @@ html, body {
 .custom_zoomcontrol span:first-child{
     border-bottom:1px solid #bfbfbf;
 }     
-/* 카테고리1 */
-.category {
+/* 사망인원 */
+.death {
     position:absolute;
     overflow:hidden;
     top:10px;
@@ -59,29 +59,9 @@ html, body {
     font-size:20px;
     text-align:center;
     background-color:#fff;
-}
-.category, .category *{
-            margin:0;
-            padding:0;
-            color:rgb(255, 0, 0);
 }   
-.category .menu_selected {
-    background:#FF5F4A;
-    color:#fff;
-    border-left:1px solid #915B2F;
-    border-right:1px solid #915B2F;
-    margin:0 -1px;
-} 
-.category li{
-    list-style:none;
-    float:left;
-    width:50px;
-    height:45px;
-    padding-top:5px;
-    cursor:pointer;
-}   
-/* 카테고리2 */
-.category2 {
+/* 완치인원 */
+.recovery {
     position:absolute;
     overflow:hidden;
     top:45px;
@@ -94,28 +74,8 @@ html, body {
     text-align:center;
     background-color:#fff;
 }	
-.category2, .category2 *{
-    margin:0;
-    padding:0;
-    color:rgb(55, 0, 255);
-}   
-.category2 .menu_selected {
-    background:#FF5F4A;
-    color:#fff;
-    border-left:1px solid #915B2F;
-    border-right:1px solid #915B2F;
-    margin:0 -1px;
-} 
-.category2 li{
-    list-style:none;
-    float:left;
-    width:50px;
-    height:45px;
-    padding-top:5px;
-    cursor:pointer;
-} 
-/* 카테고리3 */
-.category3 {
+/* 확진 */
+.definite {
     position:absolute;
     overflow:hidden;
     top:80px;
@@ -129,68 +89,8 @@ html, body {
     text-align:center;
     background-color:#fff;
 }
-.category3, .category3 *{
-    margin:0;
-    padding:0;
-    color:rgb(255, 156, 42);
-}   
-.category3 .menu_selected {
-    background:#FF5F4A;
-    color:#fff;
-    border-left:1px solid #915B2F;
-    border-right:1px solid #915B2F;
-    margin:0 -1px;
-} 
-.category3 li{
-    list-style:none;
-    float:left;
-    width:50px;
-    height:45px;
-    padding-top:5px;
-    cursor:pointer;
-}
-
-/*카테고리 4*/
-.category4 {
-    position:absolute;
-    overflow:hidden;
-    bottom:0px;
-    right:0px;
-    width:100%;
-    height:160px;
-    z-index:10;
-    border:1px solid black;
-    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
-    font-size:16px;
-    text-align:center;
-    background-color:#fff;
-}
-.category4, .category4 *{
-    margin:0;
-    padding:0;
-    color:#000;
-}   
-.category4 .menu_selected {
-    background:#FF5F4A;
-    color:#fff;
-    border-left:1px solid #915B2F;
-    border-right:1px solid #915B2F;
-    margin:0 -1px;
-} 
-.category4 li{
-    list-style:none;
-    float:left;
-    width:50px;
-    height:45px;
-    padding-top:5px;
-    cursor:pointer;
-} 
-
-/* 카테고리5 */
-.category5, .category5 *{
-    margin:0;padding:0;color:rgb(0, 0, 0);
-}   
-.category5 {
+/* 격리 */  
+.isolation {
     position:absolute;
     overflow:hidden;
     top:115px;
@@ -204,20 +104,29 @@ html, body {
     text-align:center;
     background-color:#fff;
 }
-		.category5 .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
-		.category5 li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
 
-
-
-        .area {
-            position: absolute;
-            background: #fff;
-            border: 1px solid #888;
-            border-radius: 3px;
-            font-size: 12px;
-            top: -5px;
-            left: 15px;
-            padding:2px;
-        }
-		
-	
+.area {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 3px;
+    font-size: 12px;
+    top: -5px;
+    left: 15px;
+    padding:2px;
+            }	
+    /* 하단footer */
+.footer {
+    position:absolute;
+    overflow:hidden;
+    bottom:0px;
+    right:0px;
+    width:100%;
+    height:160px;
+    z-index:10;
+    border:1px solid black;
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:16px;
+    text-align:center;
+    background-color:#fff;
+}
