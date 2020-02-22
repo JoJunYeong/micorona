@@ -140,8 +140,29 @@ li{
     top: -5px;
     left: 15px;
     padding:2px;
-            }	
-    /* 하단footer */
+}
+
+/* 클릭시 나타나는 창*/
+.win_click{
+    font-family: 'Noto Sans KR';
+    padding:5px;
+    font-size:0.7em;
+    text-align: center;
+}
+.cp{
+    font-family: 'Noto Sans KR';
+    padding:5px;
+    font-size:0.7em;
+    text-align: center;
+}
+#map >div > div > div > div > div {
+    min-width:150px;
+}
+#map > div > div > div > div > img {
+    top:0;
+    bottom:5px;
+}
+/* 하단footer */
 .footer {
     position:absolute;
     overflow:hidden;
@@ -156,3 +177,4 @@ li{
     text-align:center;
     background-color:#fff;
 }
+
