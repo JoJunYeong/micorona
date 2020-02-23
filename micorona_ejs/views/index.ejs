@@ -417,11 +417,11 @@
          });
         var result, message;
         if(small*5 + large*1 < 5){
-          result = "";
+          result = "좋음";
         }else if(small*5 + large*1 < 10){
-          result = "SOSO";
+          result = "주의";
         }else{
-          result = "BAD";
+          result = "심각";
         }
         // console.log(lat, lng, result, small, large);
         makeMarker(result, small, large, tempPosition);
