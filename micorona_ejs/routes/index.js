@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {page:'지도-내 주변 확진자 동선', menuId:'home'});
+  res.render('index', {
+      page:'지도-내 주변 확진자 동선',
+      menuId:'home',
+      foo:'bar'
+  });
 });
 
 router.get('/about', function(req, res, next) {
