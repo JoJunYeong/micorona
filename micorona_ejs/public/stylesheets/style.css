@@ -123,3 +123,23 @@ h1.card-text{
 .link--impt {
   display : none;
 }
+#menus{
+    position:absolute;
+    top:30px;
+    left:20px;
+    z-index: 999;
+    width:100px;
+    height:100px;
+}
+#menus ul{
+    list-style:none;
+    padding:0;
+}
+#menus ul li {
+    text-align: center;
+    font-family: "Noto Sans KR";
+    margin-bottom:10px;
+    background-color:white;
+    border: solid;
+
+}
