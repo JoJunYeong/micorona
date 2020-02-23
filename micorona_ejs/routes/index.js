@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+app.locals.points = "8,123";
+app.locals.numberdata = require('./public/file/number.json');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {page:'지도-내 주변 확진자 동선', menuId:'home'});

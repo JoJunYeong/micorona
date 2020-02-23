@@ -3,10 +3,9 @@ var path = require('path');
 var logger = require('morgan');
 var index = require('./routes/index');
 var app = express();
-var bodyParser = require('body-parser');
 
 
-app.use(bodyParser());
+
 
 
 // view engine setup
@@ -40,7 +39,10 @@ app.listen(8000,function(){
 });
 
 app.get('/', function(request,response){
-  response.render('index');
+  response.render('index', {
+    foo : 'bar'
+
+  });
 });
 
 
