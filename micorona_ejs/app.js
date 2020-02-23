@@ -3,6 +3,11 @@ var path = require('path');
 var logger = require('morgan');
 var index = require('./routes/index');
 var app = express();
+var bodyParser = require('express');
+var cors = require('cors');
+
+app.use(bodyParser());
+app.use(cors());
 
 
 // view engine setup
