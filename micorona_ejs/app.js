@@ -3,11 +3,10 @@ var path = require('path');
 var logger = require('morgan');
 var index = require('./routes/index');
 var app = express();
-var bodyParser = require('express');
-var cors = require('cors');
+var bodyParser = require('body-parser');
+
 
 app.use(bodyParser());
-app.use(cors());
 
 
 // view engine setup
@@ -34,5 +33,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {status:err.status, message:err.message});
 });
+
+app.listen(8000,function(){
+  console.log("heard on 8000");
+
+});
+
+app.get('/', function(request,response){
+  response.render('index');
+});
+
 
 module.exports = app;
