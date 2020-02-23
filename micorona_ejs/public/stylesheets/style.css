@@ -2,6 +2,9 @@
       background-color: #ffffff;
       color: #555555;
   }
+a{
+    color:#222 !important;
+}
   .container-fluid {
       padding-top: 70px;
       padding-bottom: 70px;
@@ -14,13 +17,19 @@
       margin-bottom: 0;
       font-size: 12px;
       letter-spacing: 4px;
+      font-family: Prata;
+      font-weight:bold;
   }
   .navbar-nav  li a:hover {
-      color: #f0ad4e !important;
+      color: #ff5252 !important;
+      font-family: Prata;
+      font-weight:bold;
   }
 
   .active>a {
-    color: #f0ad4e !important;
+    color: #ff5252 !important;
+      font-family: Prata;
+      font-weight:bold;
   }
 
 p{
