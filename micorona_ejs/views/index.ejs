@@ -39,6 +39,14 @@
         <% }%>
     </ul>
 </div>
+<div id="pop_up">
+    <div id="pop_up_header">Notice</div>
+    <div id="pop_up_body">내용입니다<br>내용1<br>내용2</div>
+    <div><button id="pop_up_close_btn">닫기</button></div>
+</div>
+<div id="pop_up_close">
+</div>
+
 <div id="menu_wrap" class="bg_white" style="display:none;">
         <ul id="placesList"></ul>
         <div id="pagination"></div>
@@ -52,9 +60,15 @@
   <script>
 
 
+      $("#pop_up_close").click(function() {
+          $("#pop_up").css("display", "none");
+          $("#pop_up_close").css("display", "none");
+      });
 
-
-
+      $("#pop_up_close_btn").click(function () {
+          $("#pop_up").css("display", "none");
+          $("#pop_up_close").css("display", "none");
+      });
 
     $("#logo").hide();
     $("#search").css("display", "inline");
