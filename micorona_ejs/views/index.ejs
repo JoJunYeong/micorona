@@ -29,13 +29,14 @@
 <% include partials/menu %>
 
 <div id="map" style="width:100%;height:100%;"></div>
-
 <div id="menus" class="menuss">
     <ul>
-        <li style="color:red">사망 :5 </li>
-        <li style="color:blue">완치 : 18</li>
-        <li style="color:orange">확진 : 602</li>
-        <li>격리 :8057</li>
+        <% var a =5; var b =10; var c=602; var d=8057;{%>
+        <li style="color:red">사망 :<%= a %>  </li>
+        <li style="color:blue">완치 : <%= b%> </li>
+        <li style="color:orange">확진 : <%= c%> </li>
+        <li>격리 : <%= d%> </li>
+        <% }%>
     </ul>
 </div>
 <div id="menu_wrap" class="bg_white" style="display:none;">
