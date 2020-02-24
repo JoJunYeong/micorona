@@ -340,8 +340,8 @@ th {
 }
 
 .glyphicon-remove:before {
-/*눌렀을때
-  content: "\e014";*/
+/*눌렀을때*/
+  content: "X";
 }
 .glyphicon-zoom-in:before {
   content: "\e015";
