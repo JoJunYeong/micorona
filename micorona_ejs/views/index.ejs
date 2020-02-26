@@ -31,19 +31,12 @@
 <div id="map" style="width:100%;height:100%;"></div>
 <div id="menus" class="menuss">
     <ul>
-        <div class="card">
-            <div class="card-header">
-                확진
-            </div>
-            <div class="card-body">
-                <h1 class="card-text"  id="koreaInfected"></h1>
-                <!--             <span class="red">(<span id="koreaInfectedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
-            </div>
-        </div>
+        <!--    현황판 자료를 한번밖에 못 불러옴 왜지?
         <% var koreaDied ; var koreaRecovered ; var koreaInfected ; {%>
         <li style="color:red">사망 : <%= koreaDied %> </li>
         <li style="color:blue">완치 : <%= koreaRecovered %> </li>
         <li style="color:orange">확진 : <%= koreaInfected %> </li>
+        -->
         <% }%>
     </ul>
 </div>
@@ -756,8 +749,7 @@
 
           sizeMake();
 
-          $("#logo").css("display", "inline");
-          $("#search").hide();
+         
           // $(".lastupdate").text($("#update").text());
 
           var date = [];
