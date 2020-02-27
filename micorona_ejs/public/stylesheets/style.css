@@ -59,7 +59,7 @@ p{
 
 .card-header{
   font-size: 20px;
-  color: #f0ad4e !important;
+
     font-weight: bold;
 }
 
@@ -116,6 +116,21 @@ span.card-text{
   color : red;
   font-size: 15px;
 }
+
+.black {
+    color : black;
+    font-size: 15px;
+}
+
+.yellow {
+    color : yellow;
+    font-size: 15px;
+}
+.blue {
+    color : blue;
+    font-size: 15px;
+}
+
 
 .green{
   color : green;
