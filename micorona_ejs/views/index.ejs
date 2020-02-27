@@ -32,51 +32,57 @@
 <div id="menus" class="menuss">
     <ul>
         <!--    현황판 자료를 한번밖에 못 불러옴 왜지?
-        <% var koreaDied ; var koreaRecovered ; var koreaInfected ; {%>
-        <li style="color:red">사망 : <%= koreaDied %> </li>
-        <li style="color:blue">완치 : <%= koreaRecovered %> </li>
-        <li style="color:orange">확진 : <%= koreaInfected %> </li>
+         $("#koreaInfected").text(result.result[0]);
+         $("#koreaInfected").text(result.result[0]);
+                      $("#infect").text(result.result[0]);
+                      $("#koreaRecovered").text(result.result[1]);
+                      $("#recover").text(result.result[1]);
+                      $("#koreaDied").text(result.result[2]);
+                      $("#dead").text(result.result[2]);
         -->
-        <% }%>
+        <li style="color:red">사망 : <div id="dead"></div> </li>
+        <li style="color:blue">완치 : <div id="recover"></div> </li>
+            <li style="color:orange">확진 : <div id="infect"></div> </li>
+        -->
     </ul>
 </div>
 <div id="pop_up">
     <div id="pop_up_header">코로나19 현황</div>
     <div id="pop_up_body">
 
-        <p style="text-align: center; margin-top:2px; " >질병관리본부 <span id="updatetime"></span> 기준 &nbsp;<span id="updateicon" style="border:0px; color:orange;"><span class="glyphicon glyphicon-refresh" style="border:0px;"></span></span></p>
+        <p style="text-align: center; margin-top:2px; " ><span id="updatetime"></span> 기준 &nbsp;<span id="updateicon" style="border:0px; color:orange;"><span class="glyphicon glyphicon-refresh" style="border:0px;"></span></span></p>
 
         <div class="container-fluid bg-3 text-center">
             <div class="row">
                 <div class="col-xs-4 col=sm-4 col-md-4 col-lg-4">
                     <div class="card">
-                        <div class="card-header">
+                        <span class="card-header">
                             확진
-                        </div>
+                        </span>
                         <div class="card-body">
-                            <h1 class="card-text"  id="koreaInfected"></h1>
+                            <span class="card-text"  id="koreaInfected"></span>
                             <!--             <span class="red">(<span id="koreaInfectedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-4 col=sm-4 col-md-4 col-lg-4">
                     <div class="card">
-                        <div class="card-header">
+                        <span class="card-header">
                             사망
-                        </div>
-                        <div class="red">
-                            <h1 class="card-text" id="koreaDied"></h1>
+                        </span>
+                        <div class="card-body">
+                            <span class="card-text" id="koreaDied" style="color: red"></span>
                             <!--             <span class="red">(<span id="koreaDiedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-4 col=sm-4 col-md-4 col-lg-4">
                     <div class="card">
-                        <div class="card-header">
+                        <span class="card-header">
                             완치
-                        </div>
+                        </span>
                         <div class="card-body">
-                            <h1 class="card-text" id="koreaRecovered" style="color:green;"></h1>
+                            <span class="card-text" id="koreaRecovered" style="color:green;"></span>
                             <!--             <span class="red">(<span id="koreaDiedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
                         </div>
                     </div>
@@ -88,13 +94,13 @@
 
 </div>
 
-
+<div id="scrolling">
     <div id="pop_up_header">공지</div>
     <div id="pop_up_body">
         Micorona가 우리동네코로나로 바뀌었습니다.   <br> 앞으로 많은 이용 부탁드립니다. <br>
     </div>
 
-
+</div>
     <div><button id="pop_up_close_btn">닫기</button></div>
 </div>
 <div id="pop_up_close">
@@ -684,7 +690,7 @@
 
           function getDateTime(){
               var date = new Date();
-              var text = date.getFullYear() + "-" + digit(date.getMonth()+1) + "-" + digit(date.getDate()) + " "+digit(date.getHours()) + ":"+digit(date.getMinutes()) + ":" + digit(date.getSeconds());
+              var text = date.getFullYear() + "-" + digit(date.getMonth()+1) + "-" + digit(date.getDate()) +" "+digit(date.getHours()) + ":"+digit(date.getMinutes()) + ":" + digit(date.getSeconds());
               $("#updatetime").text(text);
           }
 
@@ -700,8 +706,11 @@
                   },
                   success: function(result){
                       $("#koreaInfected").text(result.result[0]);
-                      $("#koreaDied").text(result.result[2]);
+                      $("#infect").text(result.result[0]);
                       $("#koreaRecovered").text(result.result[1]);
+                      $("#recover").text(result.result[1]);
+                      $("#koreaDied").text(result.result[2]);
+                      $("#dead").text(result.result[2]);
                       getDateTime();
                   },
                   error: function(){
@@ -730,16 +739,18 @@
           $(window).resize(function(){
               sizeMake();
           });
-
+        /* 팝업창 사이즈부분 */
           var width, height;
           function sizeMake(){
               width = $(window).width();
               heigth = $(window).height();
 
+
               var font_size = width/10;
-              $(".row div").css("font-size", font_size/2);
-              $(".card-body h1").css("font-size", font_size);
-              $(".red h1").css("font-size", font_size);
+              $(".row div").css("font-size", font_size/10);
+              $(".card-body ").css("font-size", font_size/3);
+
+              $(".red h1").css("font-size", font_size/8);
               $("h4").css("font-size", font_size/2.5);
               $("#nations").css("font-size", font_size/4);
               $("#viewtype").css("font-size", font_size/3);

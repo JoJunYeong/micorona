@@ -55,12 +55,13 @@ p{
 }
 
 .card-header{
-  font-size: 17px;
+  font-size: 20px;
   color: #f0ad4e !important;
+    font-weight: bold;
 }
 
-h1.card-text{
-  font-size: 90px;
+span.card-text{
+  font-size: 20px;
 }
 
 #coronaTable{
@@ -180,9 +181,9 @@ h1.card-text{
 }
 #pop_up_body{
     width:100%;
-    height:100%;
+    height:35%;
     text-align: center;
-    padding:10%;
+    padding:3%;
 }
 #pop_up_close_btn{
     color: white;
@@ -206,4 +207,10 @@ h1.card-text{
     z-index: 2000;
     display:flex;
 
+}
+#scrolling{
+    width: 100%;
+    height: 47%;
+    overflow: scroll;
+    overflow-x: hidden;
 }
