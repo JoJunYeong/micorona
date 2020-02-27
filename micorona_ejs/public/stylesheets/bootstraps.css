@@ -274,7 +274,6 @@ th {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  display:none;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -4285,9 +4284,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
-}
-.navbar-brand > img {
-  display: block;
 }
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
