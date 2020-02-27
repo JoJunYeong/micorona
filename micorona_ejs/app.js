@@ -31,7 +31,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(8000,function(){
-	console.log("heard on 8000");
+	console.log("heard on 8000!");
 });
 
 module.exports = app;
@@ -42,7 +42,7 @@ const cheerio = require("cheerio");
 var i =1;
 app.get('/getKoreaData', function(req, res){
 
-	console.log("Success GET "+req.query.data+i);
+	console.log("Success GET!! "+req.query.data);
 	i++;
 	async function getHTML() {
 		try {
@@ -71,7 +71,7 @@ app.get('/getKoreaData', function(req, res){
 
 app.get('/getKoreaData2', function(req, res){
 
-	console.log("Success GET "+req.query.data+i);
+	console.log("Success GET!! "+req.query.data);
 	i++;
 	async function getHTML() {
 		try {
