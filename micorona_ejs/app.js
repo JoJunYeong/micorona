@@ -39,11 +39,11 @@ module.exports = app;
 //크롤링
 const axios = require("axios");
 const cheerio = require("cheerio");
-
+var i =1;
 app.get('/getKoreaData', function(req, res){
 
-	console.log("Success GET "+req.query.data);
-
+	console.log("Success GET "+req.query.data+i);
+	i++;
 	async function getHTML() {
 		try {
 			return await axios.get("http://ncov.mohw.go.kr/index_main.jsp");
