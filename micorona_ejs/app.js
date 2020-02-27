@@ -30,6 +30,10 @@ app.use(function(err, req, res, next) {
   res.render('error', {status:err.status, message:err.message});
 });
 
+app.listen(8000,function(){
+	console.log("heard on 8000");
+});
+
 module.exports = app;
 
 //크롤링
