@@ -69,3 +69,32 @@ app.get('/getKoreaData', function(req, res){
 
 });
 
+app.get('/getKoreaData2', function(req, res){
+
+	console.log("Success GET "+req.query.data+i);
+	i++;
+	async function getHTML() {
+		try {
+			return await axios.get("http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=11&ncvContSeq=&contSeq=&board_id=&gubun=");
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	getHTML()
+		.then(html => {
+			let numList2 = [];
+			const $ = cheerio.load(html.data);
+			const bodyList = $("s_listin_dot")
+			bodyList.each(function(i, elem) {
+				numList2[i] = $(this).text().replace(/[^0-9]/g,"");
+			});
+			return numList2;
+		}).then(result => {
+		console.log(result);
+		// kor = copyObject(result);
+		res.send({result:result});
+	});
+
+});
+
