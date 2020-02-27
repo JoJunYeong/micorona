@@ -55,12 +55,13 @@ p{
 }
 
 .card-header{
-  font-size: 17px;
+  font-size: 20px;
   color: #f0ad4e !important;
+    font-weight: bold;
 }
 
-h1.card-text{
-  font-size: 90px;
+span.card-text{
+  font-size: 20px;
 }
 
 #coronaTable{
