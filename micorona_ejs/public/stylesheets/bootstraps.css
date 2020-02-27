@@ -397,7 +397,7 @@ th {
 }
 .glyphicon-refresh:before {
 
-  content: "https://micorona.site/image/virus2.png";
+  content: "\e31";
 }
 .glyphicon-list-alt:before {
   content: "\e032";
