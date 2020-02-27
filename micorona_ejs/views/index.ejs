@@ -32,12 +32,18 @@
 <div id="menus" class="menuss">
     <ul>
         <!--    현황판 자료를 한번밖에 못 불러옴 왜지?
-        <% var koreaDied ; var koreaRecovered ; var koreaInfected ; {%>
-        <li style="color:red">사망 : <%= koreaDied %> </li>
-        <li style="color:blue">완치 : <%= koreaRecovered %> </li>
-        <li style="color:orange">확진 : <%= koreaInfected %> </li>
+         $("#koreaInfected").text(result.result[0]);
+         $("#koreaInfected").text(result.result[0]);
+                      $("#infect").text(result.result[0]);
+                      $("#koreaRecovered").text(result.result[1]);
+                      $("#recover").text(result.result[1]);
+                      $("#koreaDied").text(result.result[2]);
+                      $("#dead").text(result.result[2]);
         -->
-        <% }%>
+        <li style="color:red">사망 : <div id="dead"></div> </li>
+        <li style="color:blue">완치 : <div id="recover"></div> </li>
+            <li style="color:orange">확진 : <div id="infect"></div> </li>
+        -->
     </ul>
 </div>
 <div id="pop_up">
@@ -700,8 +706,11 @@
                   },
                   success: function(result){
                       $("#koreaInfected").text(result.result[0]);
-                      $("#koreaDied").text(result.result[2]);
+                      $("#infect").text(result.result[0]);
                       $("#koreaRecovered").text(result.result[1]);
+                      $("#recover").text(result.result[1]);
+                      $("#koreaDied").text(result.result[2]);
+                      $("#dead").text(result.result[2]);
                       getDateTime();
                   },
                   error: function(){
@@ -736,7 +745,7 @@
               width = $(window).width();
               heigth = $(window).height();
 
-              
+
               var font_size = width/10;
               $(".row div").css("font-size", font_size/10);
               $(".card-body ").css("font-size", font_size/3);
