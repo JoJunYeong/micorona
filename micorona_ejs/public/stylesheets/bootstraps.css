@@ -391,6 +391,7 @@ th {
 .glyphicon-repeat:before {
   content: "\e030";
 }
+/* 새로고침 이미지*/
 .glyphicon-refresh:before {
   content: "\e031";
 }
