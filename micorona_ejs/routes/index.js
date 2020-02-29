@@ -24,12 +24,11 @@ router.get('/datas', function(req, res, next) {
 //크롤링
 const axios = require("axios");
 const cheerio = require("cheerio");
-var i =1;
 
 router.get('/getKoreaData', function(req, res, next){
 
-	console.log("Success GET "+req.query.data+" "+i+"번째접속 , 접속시간 : "+Date());
-	i++;
+	console.log("Success GET "+req.query.data);
+
 	async function getHTML() {
 		try {
 			return await axios.get("http://ncov.mohw.go.kr/index_main.jsp");

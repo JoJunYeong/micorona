@@ -31,7 +31,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(8000,function(){
-	console.log("heard on 8000!");
+	console.log("heard on 8000");
 });
 
 module.exports = app;
@@ -42,7 +42,7 @@ const cheerio = require("cheerio");
 var i =1;
 app.get('/getKoreaData', function(req, res){
 
-	console.log("Success GET!! "+req.query.data);
+	console.log("Success GET "+req.query.data+i);
 	i++;
 	async function getHTML() {
 		try {
@@ -66,35 +66,6 @@ app.get('/getKoreaData', function(req, res){
  	// kor = copyObject(result);
  	res.send({result:result});
  });
-
-});
-
-app.get('/getKoreaData2', function(req, res){
-
-	console.log("Success GET!! "+req.query.data);
-	i++;
-	async function getHTML() {
-		try {
-			return await axios.get("http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=11&ncvContSeq=&contSeq=&board_id=&gubun=");
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
-	getHTML()
-		.then(html => {
-			let numList2 = [];
-			const $ = cheerio.load(html.data);
-			const bodyList = $("s_listin_dot")
-			bodyList.each(function(i, elem) {
-				numList2[i] = $(this).text().replace(/[^0-9]/g,"");
-			});
-			return numList2;
-		}).then(result => {
-		console.log(result);
-		// kor = copyObject(result);
-		res.send({result:result});
-	});
 
 });
 
