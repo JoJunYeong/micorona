@@ -46,7 +46,7 @@ app.get('/getKoreaData', function(req, res){
 	i++;
 	async function getHTML() {
 		try {
-			return await axios.get("http://ncov.mohw.go.kr/index_main.jsp");
+			return await axios.get("http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=&brdGubun=&ncvContSeq=&contSeq=&board_id=&gubun=");
 		} catch (error) {
 			console.error(error);
 		}

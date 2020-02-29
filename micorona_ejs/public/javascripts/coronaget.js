@@ -34,7 +34,7 @@ getHTML()
   .then(html => {
     let numList = [];
     const $ = cheerio.load(html.data);
-    const bodyList = $(".data_table tbl_scrl_mini2 mgt16 .w_bold")
+    const bodyList = $(".num .w_bold")
     bodyList.each(function(i, elem) {
       numList[i] = $(this).text().replace(/[^0-9]/g,"");
     });

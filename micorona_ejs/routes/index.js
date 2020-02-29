@@ -31,7 +31,7 @@ router.get('/getKoreaData', function(req, res, next){
 
 	async function getHTML() {
 		try {
-			return await axios.get("http://ncov.mohw.go.kr/index_main.jsp");
+			return await axios.get("http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=&brdGubun=&ncvContSeq=&contSeq=&board_id=&gubun=");
 		} catch (error) {
 			console.error(error);
 		}
@@ -41,7 +41,7 @@ router.get('/getKoreaData', function(req, res, next){
 	.then(html => {
 		let numList = [];
 		const $ = cheerio.load(html.data);
-		const bodyList = $(".co_cur .num")
+		const bodyList = $(".num .w_bold")
 		bodyList.each(function(i, elem) {
 			numList[i] = $(this).text().replace(/[^0-9]/g,"");
 		});

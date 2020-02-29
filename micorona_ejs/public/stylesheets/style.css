@@ -179,7 +179,7 @@ span.card-text{
     transform: translate(-50%, -50%);
     height: 90%;
     max-height: 590px;
-    width: 91%;
+    width: 97%;
     z-index: 3000;
     display: flex;
     flex-direction: column;
@@ -193,7 +193,7 @@ span.card-text{
 #pop_up_header{
     width:100%;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     font-family: "Noto Sans KR";
     font-weight:bold;
     color:#ff5252;
