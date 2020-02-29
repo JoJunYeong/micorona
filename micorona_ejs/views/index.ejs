@@ -42,7 +42,8 @@
         -->
         <li style="color:red">사망 : <span id="dead"></span> </li>
         <li style="color:blue">완치 : <span id="recover"></span> </li>
-            <li style="color:orange">확진 : <span id="infect"></span> </li>
+        <li style="color:orange">확진 : <span id="infect"></span> </li>
+        <li style="color:orange">의심 : <span id="doubt"></span> </li>
         -->
     </ul>
 </div>
@@ -719,6 +720,8 @@
                       $("#recover").text(result.result[1]);
                       $("#koreaDied").text(result.result[2]);
                       $("#dead").text(result.result[2]);
+                      $("#koreaDoubt").text(result.result[3]);
+                      $("#doubt").text(result.result[3]);
                       getDateTime();
                   },
                   error: function(){
