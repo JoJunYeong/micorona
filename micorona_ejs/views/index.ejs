@@ -31,24 +31,16 @@
 <div id="map" style="width:100%;height:100%;"></div>
 <div id="menus" class="menuss">
     <ul>
-        <!--    현황판 자료를 한번밖에 못 불러옴 왜지?
-         $("#koreaInfected").text(result.result[0]);
-         $("#koreaInfected").text(result.result[0]);
-                      $("#infect").text(result.result[0]);
-                      $("#koreaRecovered").text(result.result[1]);
-                      $("#recover").text(result.result[1]);
-                      $("#koreaDied").text(result.result[2]);
-                      $("#dead").text(result.result[2]);
-        -->
-        <li style="color:red">사망 : <span id="dead"></span> </li>
+
+        <li style="color:red">확진 : <span id="infect"></span> </li>
+        <li style="color:black">사망 : <span id="dead"></span> </li>
         <li style="color:blue">완치 : <span id="recover"></span> </li>
-        <li style="color:orange">확진 : <span id="infect"></span> </li>
-        <li style="color:orange">의심 : <span id="doubt"></span> </li>
-        -->
+
+
     </ul>
 </div>
 <div id="pop_up">
-    <div id="pop_up_header">코로나19 현황</div>
+    <div id="pop_up_header" style="color: black">코로나19 현황</div>
     <div id="pop_up_body">
 
         <p style="text-align: center; margin-top:2px; " ><span id="updatetime"></span> 기준 &nbsp;<span id="updateicon" style="border:0px; color:orange;"><span class="glyphicon glyphicon-refresh" style="border:0px;"></span></span></p>
@@ -57,37 +49,42 @@
             <div class="row">
                 <div class="col-xs-4 col=sm-4 col-md-4 col-lg-4">
                     <div class="card">
-                        <span class="card-header">
+                        <span class="card-header" style="color: red">
                             확진
                         </span>
-                        <div class="card-body">
+                        <div class="card-body" style="color: red">
                             <span class="card-text"  id="koreaInfected"></span>
                             <!--             <span class="red">(<span id="koreaInfectedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="col-xs-4 col=sm-4 col-md-4 col-lg-4">
                     <div class="card">
-                        <span class="card-header">
+                        <span class="card-header" style="color: black">
                             사망
                         </span>
-                        <div class="card-body">
-                            <span class="card-text" id="koreaDied" style="color: red"></span>
+                        <div class="card-body"  style="color: black" >
+                            <span class="card-text" id="koreaDied" ></span>
                             <!--             <span class="red">(<span id="koreaDiedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xs-4 col=sm-4 col-md-4 col-lg-4">
                     <div class="card">
-                        <span class="card-header">
+                        <span class="card-header" style="color: blue">
                             완치
                         </span>
                         <div class="card-body">
-                            <span class="card-text" id="koreaRecovered" style="color:green;"></span>
-                            <!--             <span class="red">(<span id="koreaDiedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span> -->
+                            <span class="card-text" id="koreaRecovered" style="color:blue;"></span>
+                            <!--             <span class="red">(<span id="koreaDiedGap"></span> <span class="glyphicon glyphicon-circle-arrow-up"></span>)</span>       -->
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -96,11 +93,8 @@
 </div>
 
 <div id="scrolling">
-    <div id="pop_up_header">공지</div>
+    <div id="pop_up_header" style="color: black">공지</div>
     <div id="pop_up_body">
-        1. Micorona가 우리동네코로나로 바뀌었습니다. 앞으로 많은 이용 부탁드립니다. <br><br>
-        2. 왼쪽위에 검색아이콘이 있습니다. 지역, 확진자 검색가능합니다   <br><br>
-        3. 지도의 빈곳을 클릭하면 주변에 확진자 동선이 얼마나 되는지 나옵니다. 한번 눌러보세요! <br><br>
         1. 확진자 동선을 각 지자체에서 각자 홈페이지로 올리기때문에 현재 동선파악에 많은 어려움이 있습니다. 동선 업데이트가 느린 점 양해부탁드립니다. <br><br>
         2. 제보시 빠른 분류를 위해 이메일 제목에<span class="red"> [코로나 서을],[코로나 경기도],[코로나 충청도],[코로나 강원도] 등과 같이 코로나 키워드와 지역 명을 붙여주시면(ex.[코로나 서울] 서을 확진자 제보합니다 )</span> 저희가 작업할때 좀 더 빠르게 업데이트가 가능할 것 같습니다!! 정말 감사드립니다.
         <br><br>
@@ -339,7 +333,7 @@
       var polyline = new kakao.maps.Polyline({
         path: linePath, 
         strokeWeight: 5, 
-        strokeColor: 'red',
+        strokeColor: 'red', 
         strokeOpacity: 0.7, 
         strokeStyle: 'solid' 
       });
@@ -720,8 +714,6 @@
                       $("#recover").text(result.result[1]);
                       $("#koreaDied").text(result.result[2]);
                       $("#dead").text(result.result[2]);
-                      $("#koreaDoubt").text(result.result[3]);
-                      $("#doubt").text(result.result[3]);
                       getDateTime();
                   },
                   error: function(){
