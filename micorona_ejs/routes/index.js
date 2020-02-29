@@ -24,11 +24,12 @@ router.get('/datas', function(req, res, next) {
 //크롤링
 const axios = require("axios");
 const cheerio = require("cheerio");
+var i =1;
 
 router.get('/getKoreaData', function(req, res, next){
 
-	console.log("Success GET "+req.query.data);
-
+	console.log("Success GET "+req.query.data +" "+ i +" 번째요청 " + Date());
+	i++;
 	async function getHTML() {
 		try {
 			return await axios.get("http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=&brdGubun=&ncvContSeq=&contSeq=&board_id=&gubun=");

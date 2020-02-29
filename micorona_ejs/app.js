@@ -31,7 +31,8 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(8000,function(){
-	console.log("heard on 8000");
+	console.log("포트 8000 으로 접속승인중. ");
+	console.log("서버를 연 시간 " + Date() );
 });
 
 module.exports = app;
